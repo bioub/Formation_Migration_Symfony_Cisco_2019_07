@@ -153,7 +153,7 @@ contact_list:
 
 * Dans les controleurs, modifier les appels de `$this->render('AddressBookBundle:Contact:list.html.twig')` en `$this->render('address-book/contact/list.html.twig')` où `address-book/contact/list.html.twig` est le chemin vers le fichiers Twig depuis le répertoire `templates` (idem pour `$this->renderView('...')`)
 
-* Même principe dans les templates, remplacer les `{% extends '::base.html.twig' %}` en ``{% extends 'base.html.twig' %}` ou `{% extends 'AddressBookBundle::layout.html.twig' %}` en `{% extends 'address-book/layout.html.twig' %}` où `address-book/layout.html.twig` est le chemin vers le fichiers Twig depuis le répertoire `templates`. Idem pour les fragments de vues inclus avec `{% include '::menu.html.twig' %}`...
+* Même principe dans les templates, remplacer les `{% extends '::base.html.twig' %}` en `{% extends 'base.html.twig' %}` ou `{% extends 'AddressBookBundle::layout.html.twig' %}` en `{% extends 'address-book/layout.html.twig' %}` où `address-book/layout.html.twig` est le chemin vers le fichiers Twig depuis le répertoire `templates`. Idem pour les fragments de vues inclus avec `{% include '::menu.html.twig' %}`...
 
 * Remplace l'utilisation de assetic ex: `{% stylesheets %}` ou `{% javacripts %}` par Webpack Encore
 
