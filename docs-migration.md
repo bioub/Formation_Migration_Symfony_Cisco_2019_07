@@ -158,3 +158,5 @@ contact_list:
 * Remplace l'utilisation de assetic ex: `{% stylesheets %}` ou `{% javacripts %}` par Webpack Encore
 
 * Mettre les liens faits dans `base.html.twig` ou `layout.html.twig` en commentaire, le temps migrer toutes les routes.
+
+* Dans les Repositories rechercher les requêtes DQL et renommer les classes si besoin, ex : `SELECT c FROM AppBundle\Entity\Contact c WHERE c.name LIKE :like_expr` ou `SELECT c FROM AppBundle:Contact c WHERE c.name LIKE :like_expr` en `SELECT c FROM App\Entity\AddressBook\Contact c WHERE c.name LIKE :like_expr`
