@@ -121,6 +121,8 @@ DATABASE_URL=mysql://root@127.0.0.1:3306/address_book
 
 * Optionnel : les controllers de Symfony 4 héritent plutôt de `Symfony\Bundle\FrameworkBundle\Controller\AbstractController` que de `Symfony\Bundle\FrameworkBundle\Controller\Controller`
 
+* Si les routes sont sous forme d'annotation et utilisent la classe `Sensio\Bundle\FrameworkExtraBundle\Configuration\Route`, changer pour `Symfony\Component\Routing\Annotation\Route`
+
 * Les routes sont maintenant définies dans `config/routes.yaml`, si on souhaite conserver plusieurs fichiers de routes, il faudra les créer dans `config/routes` exemple `config/routes/address-book.yaml` (par exemple déplacer les fichiers depuis `src/AddressBookBundle/Resources/config/routes.yml`) et inclure ces fichiers dans `config/routes.yaml` avec une config de la forme :
 
 ```
@@ -146,3 +148,13 @@ contact_list:
 ```
 
 * Déplacer les vues depuis le dossier `Resources/views` du bundle vers le dossier `templates` à la racine, ex : `src/AddressBookBundle/Resources/views/Contact/create.html.twig` vers `templates/address-book/contact/create.html.twig`
+
+* Dans les controleurs, modifier les appels de `$doctrine->getRepository('AddressBookBundle:Contact')` en `$doctrine->getRepository(App\Entity\AddressBook\Contact::class)`
+
+* Dans les controleurs, modifier les appels de `$this->render('AddressBookBundle:Contact:list.html.twig')` en `$this->render('address-book/contact/list.html.twig')` où `address-book/contact/list.html.twig` est le chemin vers le fichiers Twig depuis le répertoire `templates` (idem pour `$this->renderView('...')`)
+
+* Même principe dans les templates, remplacer les `{% extends '::base.html.twig' %}` en ``{% extends 'base.html.twig' %}` ou `{% extends 'AddressBookBundle::layout.html.twig' %}` en `{% extends 'address-book/layout.html.twig' %}` où `address-book/layout.html.twig` est le chemin vers le fichiers Twig depuis le répertoire `templates`. Idem pour les fragments de vues inclus avec `{% include '::menu.html.twig' %}`...
+
+* Remplace l'utilisation de assetic ex: `{% stylesheets %}` ou `{% javacripts %}` par Webpack Encore
+
+* Mettre les liens faits dans `base.html.twig` ou `layout.html.twig` en commentaire, le temps migrer toutes les routes.
