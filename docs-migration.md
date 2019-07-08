@@ -160,3 +160,7 @@ contact_list:
 * Mettre les liens faits dans `base.html.twig` ou `layout.html.twig` en commentaire, le temps migrer toutes les routes.
 
 * Dans les Repositories rechercher les requêtes DQL et renommer les classes si besoin, ex : `SELECT c FROM AppBundle\Entity\Contact c WHERE c.name LIKE :like_expr` ou `SELECT c FROM AppBundle:Contact c WHERE c.name LIKE :like_expr` en `SELECT c FROM App\Entity\AddressBook\Contact c WHERE c.name LIKE :like_expr`
+
+* Pour les controllers qui font le rendus de controllers imbriqués dans un fichier Twig, il faut également utiliser le nouveau format, ex : 
+`{{ render(controller('AddressBook:Contact:lastContacts', { 'max': 3 } )) }}` devient 
+`{{ render(controller('App\\Controller\\AddressBook\\ContactController::lastContactsAction', { 'max': 3 } )) }}` 
